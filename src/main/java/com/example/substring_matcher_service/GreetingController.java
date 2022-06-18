@@ -1,4 +1,4 @@
-package com.example.restservice;
+package com.example.substring_matcher_service;
 
 import java.util.concurrent.atomic.AtomicLong;
 
