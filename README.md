@@ -32,14 +32,14 @@ Sadly, there are no automated tests. There was something about Spring's reflecti
 work out. The service has been (pretty poorly) manually tested.
 
 ## Build
+### Without Nix
+1. Install JDK 1.15 or higher
+2. `./gradlew build`
+
 ### With Nix
 ```sh
 nix-shell --command './gradlew build'
 ```
-
-### Without Nix
-1. Install JDK 1.15 or higher
-2. `./gradlew build`
 
 ## Design Notes
 ### Implementation
