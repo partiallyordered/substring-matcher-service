@@ -22,8 +22,14 @@
 nix-shell --command './gradlew bootRun -q | lnav -Ilnav'
 ```
 
+### Sample requests
+```sh
+./sample.sh
+```
+
 ## Test
-Sadly, there are none. There was something about Spring's reflection that I couldn't work out.
+Sadly, there are no automated tests. There was something about Spring's reflection that I couldn't
+work out. The service has been (pretty poorly) manually tested.
 
 ## Build
 ### With Nix
