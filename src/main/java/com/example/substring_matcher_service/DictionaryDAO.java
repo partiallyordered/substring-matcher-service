@@ -39,6 +39,7 @@ public class DictionaryDAO {
     }
 
     public void createDictionary(Dictionary dict) throws JsonProcessingException {
+        logger.info(String.format("Creating dictionary %s", dict));
         String entriesJsonStr = DictionaryDAO.entriesToJsonStr(dict.entries);
         jdbcTemplate.update(
             "INSERT INTO dictionary (id, entries, is_case_sensitive) VALUES (?, ?, ?)",
@@ -46,6 +47,7 @@ public class DictionaryDAO {
     }
 
     public Dictionary getDictionaryById(UUID id) {
+        logger.info(String.format("Retrieving dictionary %s", id));
         return jdbcTemplate.queryForObject(
             "SELECT * FROM dictionary WHERE id = ?",
             new DictionaryRowMapper(),
@@ -55,6 +57,8 @@ public class DictionaryDAO {
 
     public void updateDictionaryEntries(UUID id, List<String> entries) throws JsonProcessingException {
         String entriesJsonStr = DictionaryDAO.entriesToJsonStr(entries);
+        logger.info(
+            String.format("Setting dictionary %s entries to %s", id, entriesJsonStr));
         jdbcTemplate.update("UPDATE dictionary SET entries = ? WHERE id = ?", entriesJsonStr, id);
     }
 
@@ -70,6 +74,11 @@ public class DictionaryDAO {
 
     public void upsertDictionary(Dictionary dict) throws JsonProcessingException {
         String entriesJsonStr = DictionaryDAO.entriesToJsonStr(dict.entries);
+        logger.info(String.format(
+            "Upserting dictionary %s. Setting is_case_sensitive to %s; entries to %s",
+            dict.id,
+            dict.is_case_sensitive,
+            entriesJsonStr));
         jdbcTemplate.update(
             // Non-standard SQL (fine for the purposes of this exercise):
             """
@@ -86,10 +95,12 @@ public class DictionaryDAO {
     }
 
     public void deleteDictionary(UUID id) {
+        logger.info(String.format("Deleting dictionary %s", id));
         jdbcTemplate.update("DELETE FROM dictionary WHERE id = ?", id);
     }
 
     public List<Dictionary> listDictionaries() {
+        logger.info("Retrieving dictionary list");
         return jdbcTemplate.query("SELECT * FROM dictionary", new DictionaryRowMapper());
     }
 }
