@@ -1,6 +1,5 @@
 package com.example.substring_matcher_service;
 
-import java.util.concurrent.atomic.AtomicLong;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -36,11 +33,7 @@ public class DictionaryController {
     @Autowired
     private DictionaryDAO dictionaryDao;
 
-    @RequestMapping(
-            value = "/dictionary",
-            method = RequestMethod.GET,
-            produces = "application/json"
-    )
+    @GetMapping("/dictionary")
     @ResponseBody
     public List<Dictionary> getDictionaries() {
         return dictionaryDao.listDictionaries();
