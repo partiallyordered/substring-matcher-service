@@ -149,32 +149,42 @@ through the system.
 - It's a joy writing in an AOT compiled, strongly typed language with a passable type system.
 - It's a joy using a mostly-declarative serializing/deserializing lib that works with the types of
     your language.
-- Spring
-  - Caveat of these notes: without much experience with Java or Spring, it's tricky to have a
-      valuable opinion, so this is heavily biased by my previous experience, especially comparisons
-      with other languages/frameworks.
-  - So far I think Spring has too much magic (reflection, especially) and I don't really see the
-      benefit of it. This might be because I'm a grumpy old man, or because I haven't spent enough
-      time with it. But in general I've found I prefer to manage my database initialisation and
-      connection pool myself, plug my handlers into my router myself, manage any shared data myself.
-      It's opinionated, which is only good when they're opinions I agree with (joke..). I feel
-      railroaded for little benefit. It also seems to have a large learning curve, and again, I don't
-      really see the benefit.
-      - This has hit me directly when trying to figure out why the tests won't work. I have something
-          like
-          ```
-          java.lang.IllegalStateException at DefaultCacheAwareContextLoaderDelegate.java:132
-              Caused by: org.springframework.beans.factory.BeanDefinitionStoreException at ConfigurationClassParser.java:189
-                  Caused by: java.io.FileNotFoundException at ServletContextResource.java:159
-          ```
-          I _think_ this is caused by some problem with Spring trying to configure my data source in
-          the tests, perhaps because when loading the application .
-          But because the documentation, source code, and system is _huge_ I have no hope of figuring
-          this out in a reasonable time-frame. So, no tests.
-  - Perhaps in the same way that a programming/natural language is shared, Spring is shared. In
-      the sense of a language but also culture, patterns, etc. However, I have the feeling so far
-      that reduced implementation complexity, and sticking closer to pure Java would be preferable.
-      Having not tried writing a backend service in a framework with less reflection myself, it's
-      difficult to have an opinion.
-  - It seems like Spring may be a little like C++, or to a lesser extent Javascript: everybody
-      uses a different subset.
+### Spring
+  Caveat of these notes: without much experience with Java or Spring, it's tricky to have a
+  valuable opinion, so this is heavily biased by my previous experience, especially comparisons
+  with other languages/frameworks.
+
+  So far I think Spring has too much magic (reflection, especially) and I don't really see the
+  benefit of it. This might be because I'm a grumpy old man, or because I haven't spent enough
+  time with it. But in general I've found I prefer to manage my database initialisation and
+  connection pool myself, plug my handlers into my router myself, manage any shared data myself.
+  It's opinionated, which is only good when they're opinions I agree with (joke..). I feel
+  railroaded for little benefit. It also seems to have a large learning curve, and again, I don't
+  really see the benefit.
+  - This has hit me directly when trying to figure out why the tests won't work. I have something
+      like
+      ```
+      java.lang.IllegalStateException at DefaultCacheAwareContextLoaderDelegate.java:132
+          Caused by: org.springframework.beans.factory.BeanDefinitionStoreException at ConfigurationClassParser.java:189
+              Caused by: java.io.FileNotFoundException at ServletContextResource.java:159
+      ```
+      I _think_ this is caused by some problem with Spring trying to configure my data source in
+      the tests, perhaps because when loading the application .
+      But because the documentation, source code, and system is _huge_ I have no hope of figuring
+      this out in a reasonable time-frame. So, no tests.
+
+  Perhaps in the same way that a programming/natural language is shared, Spring is shared. In the
+  sense of a language but also culture, patterns, etc. In other words, I _should_ be able to come
+  to a new Spring codebase and understand it quickly. However, I have the feeling so far that
+  reduced implementation complexity, and sticking closer to pure Java would be preferable. Having
+  not tried writing a backend service in a framework with less reflection myself, it's difficult to
+  have an opinion.
+  - Counter to this, some of what I've read online suggests Spring may be a little like C++, or
+      to a lesser extent Javascript or Haskell: everybody uses a different subset and the
+      purported benefits of a shared language/framework etc. don't really pan out as well in
+      practice as in theory.
+
+  As Spring has a large DI/IoC component, perhaps testing is where it really shines, and that's
+  where, having not been able to work out the tests, I missed the benefit of it. My experience
+  elsewhere has been that automatic DI is something of an antipattern that is sometimes retrofitted
+  because of code that hasn't been written to be testable.
