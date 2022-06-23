@@ -51,8 +51,7 @@ public class DictionaryDAO {
         return jdbcTemplate.queryForObject(
             "SELECT * FROM dictionary WHERE id = ?",
             new DictionaryRowMapper(),
-            id.toString()
-        );
+            id.toString());
     }
 
     public void updateDictionaryEntries(UUID id, List<String> entries) throws JsonProcessingException {
@@ -68,8 +67,7 @@ public class DictionaryDAO {
         jdbcTemplate.update(
             "UPDATE dictionary SET is_case_sensitive = ? WHERE id = ?",
             is_case_sensitive,
-            id
-        );
+            id);
     }
 
     public void upsertDictionary(Dictionary dict) throws JsonProcessingException {
@@ -90,8 +88,7 @@ public class DictionaryDAO {
             // INSERT args
             dict.id, entriesJsonStr, dict.is_case_sensitive,
             // ON CONFLICT args
-            entriesJsonStr, dict.is_case_sensitive
-            );
+            entriesJsonStr, dict.is_case_sensitive);
     }
 
     public void deleteDictionary(UUID id) {
