@@ -110,6 +110,8 @@ through the system.
 
     As a fallback we could write manual validation on each endpoint, or write validation on
     `Dictionary`, 
+
+    Similar problems exist with the annotations endpoint.
 - Check the SQLite maximum JSON/string field length; if we're storing dictionary entries as a
     string/json-array
 - 400 errors are terrible for the user. E.g.
