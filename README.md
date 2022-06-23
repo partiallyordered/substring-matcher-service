@@ -90,6 +90,10 @@ through the system.
   - Packaging and releases
     - A container image, probably to Dockerhub, for convenience
     - A .jar in GH releases
+- Reproducibility: control dependencies
+  - code dependencies, i.e. those in Gradle
+  - development dependencies, e.g. Gradle itself
+  - production dependencies
 - Data validation
  
     It's possible at present to create a dictionary with no supplied properties:
