@@ -39,6 +39,11 @@ public class DictionaryController {
         return dictionaryDao.listDictionaries();
     }
 
+    @DeleteMapping("/dictionary/{id}")
+    public void deleteDictionaryById(@PathVariable(value = "id") UUID id) {
+        dictionaryDao.deleteDictionaryById(id);
+    }
+
     @PutMapping("/dictionary/{id}")
     public ResponseEntity putDictionaryById(@RequestBody Dictionary dict) {
         try {
