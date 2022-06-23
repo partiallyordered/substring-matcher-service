@@ -79,7 +79,9 @@ onboarding much quicker.
 Based on https://medium.com/@zachcorbettmcelrath/structured-logging-in-spring-boot-with-log4j2-part-1-context-enriched-logs-57a74e92339c
 
 Each request has an operation ID attached to it. Any logs written during the handling of the
-request have this operation ID attached, so can be collated and filtered.
+request have this operation ID attached, so can be collated and filtered. In a distributed system,
+this ID would be passed with any propagated requests enabling collation and correlation of events
+through the system.
 
 ## TODO
 - CI
