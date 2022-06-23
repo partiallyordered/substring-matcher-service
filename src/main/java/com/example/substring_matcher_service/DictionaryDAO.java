@@ -53,8 +53,9 @@ public class DictionaryDAO {
         );
     }
 
-    public void updateDictionaryEntries(UUID id, List<String> entries) {
-        jdbcTemplate.update("UPDATE dictionary SET entries = ? WHERE id = ?", entries, id);
+    public void updateDictionaryEntries(UUID id, List<String> entries) throws JsonProcessingException {
+        String entriesJsonStr = DictionaryDAO.entriesToJsonStr(entries);
+        jdbcTemplate.update("UPDATE dictionary SET entries = ? WHERE id = ?", entriesJsonStr, id);
     }
 
     public void updateDictionaryIsCaseSensitive(UUID id, boolean is_case_sensitive) {

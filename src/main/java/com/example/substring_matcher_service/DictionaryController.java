@@ -73,7 +73,15 @@ public class DictionaryController {
             @PathVariable(value = "id") UUID id,
             @RequestBody ArrayList<String> entries
             ) {
-        dictionaryDao.updateDictionaryEntries(id, entries);
+        try {
+            dictionaryDao.updateDictionaryEntries(id, entries);
+        } catch (JsonProcessingException e) {
+            // This should never happen, because the string was deserialized from JSON in the
+            // first place
+            throw new ResponseStatusException(
+                    HttpStatus.INTERNAL_SERVER_ERROR, "Couldn't serialize entries to JSON"
+                    );
+        }
     }
 
     @PostMapping("/dictionary")
