@@ -6,11 +6,9 @@ import org.springframework.boot.Banner;
 
 @SpringBootApplication
 public class StringMatcherServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(StringMatcherServiceApplication.class);
-        app.setBannerMode(Banner.Mode.OFF);
+        app.setBannerMode(Banner.Mode.OFF); // remove all non-JSON logging
         app.run(args);
     }
-
 }
