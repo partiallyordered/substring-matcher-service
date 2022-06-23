@@ -56,8 +56,7 @@ public class DictionaryDAO {
 
     public void updateDictionaryEntries(UUID id, List<String> entries) throws JsonProcessingException {
         String entriesJsonStr = DictionaryDAO.entriesToJsonStr(entries);
-        logger.info(
-            String.format("Setting dictionary %s entries to %s", id, entriesJsonStr));
+        logger.info(String.format("Setting dictionary %s entries to %s", id, entriesJsonStr));
         jdbcTemplate.update("UPDATE dictionary SET entries = ? WHERE id = ?", entriesJsonStr, id);
     }
 
@@ -91,7 +90,7 @@ public class DictionaryDAO {
             entriesJsonStr, dict.is_case_sensitive);
     }
 
-    public void deleteDictionary(UUID id) {
+    public void deleteDictionaryById(UUID id) {
         logger.info(String.format("Deleting dictionary %s", id));
         jdbcTemplate.update("DELETE FROM dictionary WHERE id = ?", id);
     }
