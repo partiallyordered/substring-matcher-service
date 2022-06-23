@@ -123,6 +123,7 @@ through the system.
   - API spec / client library - can this be generated from the code?
   - Is there "javadoc" or similar, with docs in comments? Judging by the documentation I've seen,
       presumably this is how much API documentation is generated already
+  - Code structure and layout + diagram
 - Read about aspect-oriented programming
 - Compile with warnings- do something about them?
 - Autoformat/lint
