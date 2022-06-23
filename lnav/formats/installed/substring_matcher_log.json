@@ -1,0 +1,41 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "substring_matcher_log": {
+        "title": "Substring matcher log format",
+        "description": "Log format used by Substring matcher",
+        "url": "",
+        "json": true,
+        "level" : {
+            "error":   "ERROR",
+            "warning": "WARN",
+            "info":    "INFO",
+            "debug":   "DEBUG",
+            "trace":   "TRACE"
+        },
+        "line-format": [
+            { "field": "__timestamp__" },
+            " | ",
+            {
+                "field": "__level__",
+                "max-width": 7,
+                "min-width": 7
+            },
+            " | ",
+            {
+                "default-value": "SYS",
+                "field": "contextMap/operationId",
+                "min-width": 36
+            },
+            " | ",
+            { "field": "message" }
+        ],
+        "hide-extra": true,
+        "body-field": "message",
+        "timestamp-field": "instant/epochSecond",
+        "level-field": "level",
+        "opid-field": "contextMap/operationId",
+        "value": {
+            "contextMap/operationId": { "kind": "string" }
+        }
+    }
+}
